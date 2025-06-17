@@ -8,9 +8,10 @@ type ContainerProps = {
 export const Container = ({ children, position }: ContainerProps) => {
   return (
     <section
-      className={`flex flex-row w-full h-full bg-[#EDEDED] ${
-        position === "center" ? "justify-center items-center" : ""
-      } `}
+      className={`flex flex-c w-full h-full bg-[#EDEDED] 
+        ${position === "center" ? "justify-center items-center" : ""}
+        
+        `}
     >
       {children}
     </section>

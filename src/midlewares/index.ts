@@ -9,7 +9,7 @@ export const verifyAuth = (request: NextRequest) => {
   console.log("Middleware => VERIFYAUTH", path);
 
   const publicRoute = publicRoutes.find((route) => route.path === path);
-  const token = true;
+  const token = false;
 
   if (!token && !publicRoute) {
     const redirectUrl = request.nextUrl.clone();

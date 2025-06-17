@@ -7,7 +7,7 @@ type LabelProps = LabelHTMLAttributes<HTMLLabelElement> & {
 
 export const Label = ({ children, text, ...rest }: LabelProps) => {
   return (
-    <label {...rest} className="flex flex-col text-md text-gray font-medium">
+    <label {...rest} className="flex flex-col mt-2 text-md text-gray font-medium">
       {text}
       {children}
     </label>

@@ -10,12 +10,15 @@ export const Button = ({ value, ...rest }: ButtonProps) => {
       {...rest}
       type="submit"
       className="w-full 
-  h-[50px] cursor-pointer bg-[#464646] 
-  rounded-sm
-  font-medium
-  text-white
-  transition
-  hover:bg-[#201F1F]
+      mt-5
+      mb-2
+      h-[50px] 
+      cursor-pointer bg-[#464646] 
+      rounded-sm
+      font-medium
+    text-white
+      transition
+    hover:bg-[#201F1F]
   "
     >
       {value}

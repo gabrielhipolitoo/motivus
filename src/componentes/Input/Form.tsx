@@ -1,13 +1,18 @@
 import React, { FormHTMLAttributes, ReactNode } from "react";
 
-type FormProps = FormHTMLAttributes<HTMLFormElement> & {
+type FormProps = {
   children: ReactNode;
-  onSubmit: () => void;
+  action?: (formData: FormData) => void;
+  onSubmit?: () => void;
 };
 
-const FormRoot = ({ children, onSubmit }: FormProps) => {
+const FormRoot = ({ children, action, onSubmit }: FormProps) => {
   return (
-    <form className="flex flex-col h-[300] justify-around" onSubmit={onSubmit}>
+    <form
+      action={action}
+      onSubmit={onSubmit}
+      className="flex flex-col h-[300] mt-5"
+    >
       {children}
     </form>
   );

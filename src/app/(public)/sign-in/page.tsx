@@ -1,50 +1,65 @@
 "use client";
+
+import { signIn } from "next-auth/react";
 import { Container } from "@/componentes/Container/Container";
 import { Form } from "@/componentes/Input";
 import LinkRouter from "@/componentes/LinkRouter/LinkRouter";
 import { loginInputSchema, LoginTypeSchema } from "@/schemas/loginSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 
-export default function SingIn() {
+export default function SignIn() {
+  const [error, setError] = useState("");
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<LoginTypeSchema>({
     resolver: zodResolver(loginInputSchema),
   });
 
-  function handleLogin(data: LoginTypeSchema) {
-    console.log(data);
+  async function handleLogin(data: LoginTypeSchema) {
+    const res = await signIn("credentials", {
+      redirect: false,
+      email: data.email,
+      password: data.password,
+    });
+
+    if (res?.error) {
+      setError("Credenciais inválidas");
+    } 
   }
-  console.log(errors);
 
   return (
     <Container position="center">
       <div className="w-[500px]  p-4">
-        <div>
-          <h2 className="text-5xl">Motivus</h2>
-        </div>
+        <h2 className="text-5xl">Motivus</h2>
+
         <Form.content onSubmit={handleSubmit(handleLogin)}>
           <Form.label text="Seu email">
             <Form.input
-              error={errors.email?.message}
               type="email"
               placeholder="Digite seu email"
               {...register("email")}
+              error={errors.email?.message}
             />
           </Form.label>
+
           <Form.label text="Sua senha">
             <Form.input
-              error={errors.password?.message}
               type="password"
               placeholder="Digite sua senha"
               {...register("password")}
+              error={errors.password?.message}
             />
           </Form.label>
-          <Form.button value={"Entrar"} />
+
+          {error && <p className="text-red-500 mt-2">{error}</p>}
+
+          <Form.button value="Entrar" />
         </Form.content>
+
         <LinkRouter path="/recovery-password" rediraction="Recuperar conta" />
       </div>
     </Container>

@@ -13,7 +13,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           className="
         p-2
-        mt-1
+        mt-2
+        mb-2
         bg-[#FAFAFA]  
         border-[#878787]
         border-[1px]

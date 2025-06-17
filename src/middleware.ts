@@ -1,3 +1,5 @@
+export { auth } from "@/auth";
+
 import {
   type MiddlewareConfig,
   type NextRequest,
