@@ -11,7 +11,13 @@ const authOptions: NextAuthConfig = {
         password: { label: "Senha", type: "password" },
       },
       async authorize(credentials, req) {
-        console.log(credentials);
+        const response = await fetch("http://localhost:3000/api/auth-mongo", {
+          method: "GET",
+        });
+
+        if (response.ok) {
+          return response.json();
+        }
         return { email: "sa" }; //
       },
     }),

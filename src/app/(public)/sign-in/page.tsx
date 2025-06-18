@@ -24,11 +24,13 @@ export default function SignIn() {
       redirect: false,
       email: data.email,
       password: data.password,
+      redirectTo: "/",
     });
 
     if (res?.error) {
+      console.log(res.error);
       setError("Credenciais inválidas");
-    } 
+    }
   }
 
   return (
