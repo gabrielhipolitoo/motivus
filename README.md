@@ -1,9 +1,7 @@
 # Proximas tarefas
-- 
+👉criar autenticação (enviar as credenciais e validar o token)
 - feature de permissão
-- Validar token bcrypt
-
-tarefa atual : Solucionar problema com o recebimento das credenciais
+- Melhorar tipagem na rota api/auth-mongo
 
 # Concluidos ✅
 - Criar conexão com banco de dados(mongodb)
