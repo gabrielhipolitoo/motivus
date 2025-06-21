@@ -12,14 +12,40 @@ const authOptions: NextAuthConfig = {
         password: {},
       },
       async authorize(credentials, req) {
-        const response = await fetch("localhost:3000/api/login", {
-          method: "POST",
-          body: JSON.stringify(credentials),
-        });
-        if (response.ok) {
-          return await response.json();
+        try {
+          const response = await fetch(
+            `${process.env.NEXTAUTH_URL}/api/login`,
+            {
+              method: "POST",
+              body: JSON.stringify(credentials),
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+
+          const { user } = await response.json();
+
+          if (!user) {
+            return null;
+          }
+
+          if (!response.ok) {
+            throw new Error("Credenciais inválidas");
+          }
+
+          return {
+            id: user._id.toString(),
+            name: user.name,
+            email: user.email,
+            permission: user.permission,
+          };
+
+
+        } catch (err: any) {
+          console.error("Erro no authorize:", err?.message);
+          return null;
         }
-        return null; //
       },
     }),
   ],

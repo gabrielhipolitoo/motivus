@@ -12,7 +12,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <h1>private</h1>
       <body>{children}</body>
     </html>
   );
