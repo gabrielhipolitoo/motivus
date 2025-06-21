@@ -5,24 +5,27 @@ export const BASE_PATH = "/api/auth";
 const authOptions: NextAuthConfig = {
   providers: [
     Credentials({
+      id: "credential",
       name: "credentials",
       credentials: {
-        email: { label: "Email", type: "text" },
-        password: { label: "Senha", type: "password" },
+        email: {},
+        password: {},
       },
       async authorize(credentials, req) {
-        const response = await fetch("/api/", {
+        const response = await fetch("localhost:3000/api/login", {
           method: "POST",
+          body: JSON.stringify(credentials),
         });
-
         if (response.ok) {
-          return response.json();
+          return await response.json();
         }
-        return { email: "sa" }; //
+        return null; //
       },
     }),
   ],
-
+  pages: {
+    error: "/sing-in",
+  },
   basePath: BASE_PATH,
   secret: process.env.NEXTAUTH_SECRET,
 };

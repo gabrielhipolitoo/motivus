@@ -1,4 +1,4 @@
-import mongoose, { model, Schema } from "mongoose";
+import mongoose, { model, Schema, models } from "mongoose";
 
 interface IUserModel {
   name: string;
@@ -8,12 +8,17 @@ interface IUserModel {
   _id: number;
 }
 
-const UserSchema = new Schema<IUserModel>({
-  name: String,
-  email: String,
-  password: String,
-  permission: String,
-  _id: Number,
-});
+mongoose.Promise = global.Promise;
 
-export const UserModel = model("", UserSchema);
+const UserSchema = new Schema<IUserModel>(
+  {
+    name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    permission: { type: String, required: true },
+    _id: { type: Number, required: true, unique: true },
+  },
+  { timestamps: true }
+);
+
+export const UserModel = models.users || model("users", UserSchema);

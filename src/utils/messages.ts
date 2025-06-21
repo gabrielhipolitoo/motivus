@@ -1,8 +1,10 @@
 export const message = {
-  loginError: "Os válores (EMAIL E SENHA) devem ser preenchidos",
+  PARAMS_INVALID: "Os válores devem ser preenchidos",
   ERROR_MONGODB_EMPTY_ENV:
     "Insira as credenciais do mongodb em variaveis de ambiente",
   CONECTION_FAILED_MONGODB: "Houve algum erro na conexão",
-  EMAIL_INVALID: "Este email não esta cadastrado",
+  EMAIL_INVALID_LOGIN: "Este email não esta cadastrado",
+  EMAIL_INVALID_REGISTER: "Este email esta existe",
   CREDENTIALS_INVALID: "Email ou senha incorreto",
+  SUCESS_CREATE_REGISTER: "Usuário criado com sucesso!!",
 };

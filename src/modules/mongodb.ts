@@ -1,32 +1,26 @@
 import { message } from "@/utils/messages";
-import { MongoClient, ServerApiVersion } from "mongodb";
-
-if (!process.env.MONGODB_URI) {
+import mongoose from "mongoose";
+import { UserModel } from "./models/userModels";
+const uri = process.env.MONGODB_URI;
+if (!uri) {
   throw new Error(message.ERROR_MONGODB_EMPTY_ENV);
 }
 
-const uri = process.env.MONGODB_URI;
+let isConnected = false;
 
-const options = {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  },
-};
-
-let client: MongoClient;
-
-if (process.env.NODE_ENV === "development") {
-  let globalWithMongo = global as typeof globalThis & {
-    _mongoclient?: MongoClient;
-  };
-
-  if (!globalWithMongo._mongoclient) {
-    globalWithMongo._mongoclient = new MongoClient(uri, options);
+export const connectMongo = () => {
+  if (isConnected) {
+    return;
   }
-  client = globalWithMongo._mongoclient;
-} else {
-  client = new MongoClient(uri, options);
-}
-export default client;
+  try {
+    isConnected = true;
+    mongoose
+      .connect(uri)
+      .then(() => console.log("Banco conectado"))
+      .catch((error) =>
+        console.log("Falha ao conectar com o banco", error.message)
+      );
+  } catch (error) {
+    console.log(" ❌Erro ao conectar ao banco!!");
+  }
+};

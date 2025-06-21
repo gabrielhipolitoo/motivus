@@ -1,6 +1,6 @@
 "use client";
 
-import { signIn } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
 import { Container } from "@/componentes/Container/Container";
 import { Form } from "@/componentes/Input";
 import LinkRouter from "@/componentes/LinkRouter/LinkRouter";
@@ -61,7 +61,7 @@ export default function SignIn() {
 
           <Form.button value="Entrar" />
         </Form.content>
-
+        <button onClick={() => signOut()}>Sair</button>
         <LinkRouter path="/recovery-password" rediraction="Recuperar conta" />
       </div>
     </Container>

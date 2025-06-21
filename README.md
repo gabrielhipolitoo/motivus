@@ -1,5 +1,5 @@
-# Proximas tarefas
-👉criar autenticação (enviar as credenciais e validar o token)
+# Proximas tarefas 
+👉 criar autenticação (enviar as credenciais e validar o token)
 - feature de permissão
 - Melhorar tipagem na rota api/auth-mongo
 
