@@ -27,11 +27,12 @@ const authOptions: NextAuthConfig = {
           const { user } = await response.json();
 
           if (!user) {
-            return null;
+            throw new Error("credentials");
+
           }
 
           if (!response.ok) {
-            return null;
+            throw new Error("credentials");
           }
 
           return {
@@ -41,7 +42,7 @@ const authOptions: NextAuthConfig = {
             permission: user.permission,
           };
         } catch (err: any) {
-          console.error("Erro no authorize:", err?.message);
+          throw new Error("Ops, houve algum erro");
           return null;
         }
       },
