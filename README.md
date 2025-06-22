@@ -1,5 +1,5 @@
 # Proximas tarefas 
-- feature de permissão
+👉 adicionar permissão nas rotas
 - Melhorar tipagem na rota api/auth-mongo
 
 # Concluidos ✅

@@ -31,7 +31,7 @@ const authOptions: NextAuthConfig = {
           }
 
           if (!response.ok) {
-            throw new Error("Credenciais inválidas");
+            return null;
           }
 
           return {
@@ -49,7 +49,6 @@ const authOptions: NextAuthConfig = {
   ],
   pages: {
     signIn: "/sign-in",
-    error: "/sign-in",
   },
   basePath: BASE_PATH,
   secret: process.env.NEXTAUTH_SECRET,

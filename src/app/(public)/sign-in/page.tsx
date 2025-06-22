@@ -8,6 +8,7 @@ import { loginInputSchema, LoginTypeSchema } from "@/schemas/loginSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { loginAction } from "@/actions/LoginActions";
 
 export default function SignIn() {
   const [error, setError] = useState("");
@@ -19,17 +20,8 @@ export default function SignIn() {
     resolver: zodResolver(loginInputSchema),
   });
 
-  async function handleLogin(data: LoginTypeSchema) {
-    const res = await signIn("credential", {
-      email: data.email,
-      password: data.password,
-      redirectTo: "/",
-    });
-
-    if (res?.error) {
-      console.log(res.error);
-      setError("Credenciais inválidas");
-    }
+  function handleLogin(data: LoginTypeSchema) {
+    loginAction(data);
   }
 
   return (

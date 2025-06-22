@@ -1,4 +1,4 @@
-"use clientt";
+"use client";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { ReactNode } from "react";
@@ -13,7 +13,7 @@ export const Container = ({ children, position }: ContainerProps) => {
   const { data: session, status } = useSession();
 
   if (status === "loading") {
-    return null;
+    return <p>carregando</p>;
   }
 
   return (
