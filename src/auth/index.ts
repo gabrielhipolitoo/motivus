@@ -40,8 +40,6 @@ const authOptions: NextAuthConfig = {
             email: user.email,
             permission: user.permission,
           };
-
-
         } catch (err: any) {
           console.error("Erro no authorize:", err?.message);
           return null;
@@ -50,7 +48,8 @@ const authOptions: NextAuthConfig = {
     }),
   ],
   pages: {
-    error: "/sing-in",
+    signIn: "/sign-in",
+    error: "/sign-in",
   },
   basePath: BASE_PATH,
   secret: process.env.NEXTAUTH_SECRET,

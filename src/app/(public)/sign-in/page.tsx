@@ -20,8 +20,7 @@ export default function SignIn() {
   });
 
   async function handleLogin(data: LoginTypeSchema) {
-    const res = await signIn("credentials", {
-      redirect: false,
+    const res = await signIn("credential", {
       email: data.email,
       password: data.password,
       redirectTo: "/",
