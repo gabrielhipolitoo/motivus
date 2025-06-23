@@ -4,7 +4,7 @@ export const message = {
     "Insira as credenciais do mongodb em variaveis de ambiente",
   CONECTION_FAILED_MONGODB: "Houve algum erro na conexão",
   EMAIL_INVALID_LOGIN: "Este email não esta cadastrado",
-  EMAIL_INVALID_REGISTER: "Este email esta existe",
+  EMAIL_INVALID_REGISTER: "Este email não existe",
   CREDENTIALS_INVALID: "Email ou senha incorreto",
   SUCESS_CREATE_REGISTER: "Usuário criado com sucesso!!",
 };

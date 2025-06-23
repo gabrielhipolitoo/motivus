@@ -7,11 +7,12 @@ import LinkRouter from "@/componentes/LinkRouter/LinkRouter";
 import { loginInputSchema, LoginTypeSchema } from "@/schemas/loginSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useActionState, useState } from "react";
 import { loginAction } from "@/actions/LoginActions";
 
 export default function SignIn() {
   const [error, setError] = useState("");
+  const [messageApi, setMessageApi] = useState<string>("");
   const {
     register,
     handleSubmit,
@@ -19,9 +20,11 @@ export default function SignIn() {
   } = useForm<LoginTypeSchema>({
     resolver: zodResolver(loginInputSchema),
   });
-
-  function handleLogin(data: LoginTypeSchema) {
-    loginAction(data);
+  async function handleLogin(data: LoginTypeSchema) {
+    const response = await loginAction(data);
+    if (response.message) {
+      setMessageApi(response.message);
+    }
   }
 
   return (
@@ -54,6 +57,7 @@ export default function SignIn() {
         </Form.content>
         <button onClick={() => signOut()}>Sair</button>
         <LinkRouter path="/recovery-password" rediraction="Recuperar conta" />
+        {messageApi && <p>{ messageApi}</p>}
       </div>
     </Container>
   );

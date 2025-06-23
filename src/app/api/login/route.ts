@@ -17,7 +17,14 @@ export async function POST(request: Request) {
     const user = await UserModel.findOne({ email: email });
 
     if (!user) {
-      return Response.json(message.EMAIL_INVALID_LOGIN);
+      return NextResponse.json(
+        {
+          error: message.EMAIL_INVALID_REGISTER,
+        },
+        {
+          status: 400,
+        }
+      );
     }
 
     const checkPassword = await bcrypt.compare(password, user.password);

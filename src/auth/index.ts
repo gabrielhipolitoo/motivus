@@ -12,39 +12,26 @@ const authOptions: NextAuthConfig = {
         password: {},
       },
       async authorize(credentials, req) {
-        try {
-          const response = await fetch(
-            `${process.env.NEXTAUTH_URL}/api/login`,
-            {
-              method: "POST",
-              body: JSON.stringify(credentials),
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
+        const response = await fetch(`${process.env.NEXTAUTH_URL}/api/login`, {
+          method: "POST",
+          body: JSON.stringify(credentials),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 
-          const { user } = await response.json();
-
-          if (!user) {
-            throw new Error("credentials");
-
-          }
-
-          if (!response.ok) {
-            throw new Error("credentials");
-          }
-
-          return {
-            id: user._id.toString(),
-            name: user.name,
-            email: user.email,
-            permission: user.permission,
-          };
-        } catch (err: any) {
-          throw new Error("Ops, houve algum erro");
-          return null;
+        const { user, error } = await response.json();
+        console.log(user, error);
+        if (!user || error) {
+          throw new Error(error);
         }
+
+        return {
+          id: user._id.toString(),
+          name: user.name,
+          email: user.email,
+          permission: user.permission,
+        };
       },
     }),
   ],

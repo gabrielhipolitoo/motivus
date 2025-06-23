@@ -1,19 +1,26 @@
 import { LoginTypeSchema } from "@/schemas/loginSchema";
-import { message } from "@/utils/messages";
-import { signIn, SignInResponse } from "next-auth/react";
-import Router from "next/router";
+import { signIn } from "next-auth/react";
 
 export const loginAction = async (data: LoginTypeSchema) => {
   try {
     const response = await signIn("credential", {
-      redirect: false,
       email: data.email,
       password: data.password,
-      redirectTo: "/",
     });
-    return { sucess: true };
-  } catch (error) {
-    console.log("AQUI O ERRO");
+    return {
+      sucess: true,
+    };
+  } catch (error: unknown) {
+    if (error.type === "CallbackRouteError") {
+      return {
+        sucess: false,
+        message: "Email ou senha incorreto",
+      };
+    }
+    console.log(error);
+    return {
+      sucess: false,
+      message: "Houve algum erro na autenticação",
+    };
   }
-  return { success: false, error: error };
 };
