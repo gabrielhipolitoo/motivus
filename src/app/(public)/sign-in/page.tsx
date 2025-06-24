@@ -11,6 +11,7 @@ import { loginAction } from "@/actions/LoginActions";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
+import Spinner from "@/componentes/Spinner/Spinner";
 export default function SignIn() {
   const [error, setError] = useState("");
   const [messageApi, setMessageApi] = useState<any>("");
@@ -36,6 +37,19 @@ export default function SignIn() {
       setMessageApi(response.message);
       setLoading(false);
     }
+  }
+
+  function ButtonLoader() {
+    if (loading) {
+      return (
+        <Form.button
+          disabled
+          loader={<Spinner styles={{ width: 50, height: 50 }} />}
+        />
+      );
+    }
+
+    return <Form.button value="Entrar" />;
   }
 
   return (
@@ -64,7 +78,7 @@ export default function SignIn() {
 
           {error && <p className="text-red-500 mt-2">{error}</p>}
 
-          {!loading && <Form.button value="Entrar" />}
+          {ButtonLoader()}
         </Form.content>
         <button onClick={() => signOut()}>Sair</button>
         <LinkRouter path="/recovery-password" rediraction="Recuperar conta" />

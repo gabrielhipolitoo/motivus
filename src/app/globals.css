@@ -2,3 +2,16 @@
 body {
   height: 100vh;
 }
+
+.spinner {
+  border: 10px solid;
+  border-color: white transparent transparent transparent;
+  border-radius: 50%;
+  animation: spinLoader 1s linear infinite;
+}
+
+@keyframes spinLoader {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,4 +1,5 @@
 import { LoginTypeSchema } from "@/schemas/loginSchema";
+import { message } from "@/utils/messages";
 import { signIn } from "next-auth/react";
 
 export const loginAction = async (data: LoginTypeSchema) => {
@@ -10,7 +11,7 @@ export const loginAction = async (data: LoginTypeSchema) => {
 
   const res = await response;
   if (res?.error === "CredentialsSignin") {
-    return { success: false, message: "email ou senha" };
+    return { success: false, message: message.CREDENTIALS_INVALID };
   }
 
   if (res?.error) {
