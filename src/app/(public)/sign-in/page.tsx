@@ -7,12 +7,14 @@ import LinkRouter from "@/componentes/LinkRouter/LinkRouter";
 import { loginInputSchema, LoginTypeSchema } from "@/schemas/loginSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useActionState, useState } from "react";
 import { loginAction } from "@/actions/LoginActions";
-
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import Link from "next/link";
 export default function SignIn() {
   const [error, setError] = useState("");
-  const [messageApi, setMessageApi] = useState<string>("");
+  const [messageApi, setMessageApi] = useState<any>("");
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -20,10 +22,19 @@ export default function SignIn() {
   } = useForm<LoginTypeSchema>({
     resolver: zodResolver(loginInputSchema),
   });
+  const router = useRouter();
+
   async function handleLogin(data: LoginTypeSchema) {
+    setLoading(true);
     const response = await loginAction(data);
+    console.log(response);
+    if (response.success === true) {
+      router.push("/");
+      setLoading(false);
+    }
     if (response.message) {
       setMessageApi(response.message);
+      setLoading(false);
     }
   }
 
@@ -53,12 +64,13 @@ export default function SignIn() {
 
           {error && <p className="text-red-500 mt-2">{error}</p>}
 
-          <Form.button value="Entrar" />
+          {!loading && <Form.button value="Entrar" />}
         </Form.content>
         <button onClick={() => signOut()}>Sair</button>
         <LinkRouter path="/recovery-password" rediraction="Recuperar conta" />
-        {messageApi && <p>{ messageApi}</p>}
+        {messageApi && <p>{messageApi}</p>}
       </div>
+      <Link href={"/dashboard"}>oloa</Link>
     </Container>
   );
 }

@@ -7,4 +7,6 @@ export const message = {
   EMAIL_INVALID_REGISTER: "Este email não existe",
   CREDENTIALS_INVALID: "Email ou senha incorreto",
   SUCESS_CREATE_REGISTER: "Usuário criado com sucesso!!",
+  ERROR_UNKNOW:
+    "Ops, houve algum erro interno, contate uns dos admnistratdores",
 };
