@@ -4,6 +4,12 @@ import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import path from "path";
 
+import {
+  NextAuthMiddlewareOptions,
+  NextRequestWithAuth,
+  withAuth,
+} from "next-auth/middleware";
+
 export const verifyAuth = async (request: NextRequest) => {
   const REDIRECT_WHITOUT_AUTHENTICATED_ROUTE = "/sign-in";
   const path = request.nextUrl.pathname;
@@ -23,5 +29,10 @@ export const verifyAuth = async (request: NextRequest) => {
     redirectUrl.pathname = "/";
     return NextResponse.redirect(redirectUrl);
   }
+  return NextResponse.next();
+};
+
+export const NextAuthToken = (request: NextRequestWithAuth) => {
+  console.log("Middleware_nextauth_token", request.nextauth.token);
   return NextResponse.next();
 };

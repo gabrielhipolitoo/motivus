@@ -4,7 +4,7 @@ body {
 }
 
 .spinner {
-  border: 10px solid;
+  border: 5px solid;
   border-color: white transparent transparent transparent;
   border-radius: 50%;
   animation: spinLoader 1s linear infinite;

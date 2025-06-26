@@ -1,16 +1,17 @@
-export { default } from "next-auth/middleware";
 import {
   type MiddlewareConfig,
   type NextRequest,
   NextResponse,
 } from "next/server";
 import { chain } from "./midlewares/chain";
-import { verifyAuth } from "./midlewares";
+import { NextAuthToken, verifyAuth } from "./midlewares";
+import withAuth, { NextAuthMiddlewareOptions } from "next-auth/middleware";
 
-export const middleware = chain([verifyAuth]);
+export const middleware = chain([verifyAuth, NextAuthToken]);
 
+const callbackOptions: NextAuthMiddlewareOptions = {};
+
+export default withAuth(middleware, callbackOptions);
 export const config: MiddlewareConfig = {
-  matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
-  ],
+  matcher: ["/"],
 };

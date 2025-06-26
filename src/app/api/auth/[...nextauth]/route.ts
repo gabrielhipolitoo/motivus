@@ -1,8 +1,11 @@
-import NextAuth, { NextAuthOptions } from "next-auth";
+import NextAuth, { DefaultSession, NextAuthOptions } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+import { email } from "zod/v4";
 export const BASE_PATH = "/api/auth";
 
-const authOptions: NextAuthOptions = {
+
+
+export const authOptions: NextAuthOptions = {
   providers: [
     Credentials({
       id: "credential",
@@ -26,19 +29,33 @@ const authOptions: NextAuthOptions = {
           return null;
         }
 
-        return {
-          id: user._id.toString(),
-          name: user.name,
-          email: user.email,
-          permission: user.permission,
-        };
+        return user;
       },
     }),
   ],
-  pages: {
-    signIn: "/sign-in",
-  },
+  pages: { signIn: "/sign-in" },
   secret: process.env.NEXTAUTH_SECRET,
+  callbacks: {
+    jwt: async ({ token, user }) => {
+      if (user) {
+        return {
+          ...token,
+          permission: user.permission,
+        };
+      }
+      return token;
+    },
+
+    session: async ({ session, token, user }) => {
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          permission: token.permission,
+        },
+      };
+    },
+  },
 };
 
 const handler = NextAuth(authOptions);

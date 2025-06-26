@@ -43,8 +43,8 @@ export default function SignIn() {
     if (loading) {
       return (
         <Form.button
-          disabled
-          loader={<Spinner styles={{ width: 50, height: 50 }} />}
+          disabled={true}
+          loader={<Spinner styles={{ width: 40, height: 40 }} />}
         />
       );
     }
@@ -80,11 +80,9 @@ export default function SignIn() {
 
           {ButtonLoader()}
         </Form.content>
-        <button onClick={() => signOut()}>Sair</button>
         <LinkRouter path="/recovery-password" rediraction="Recuperar conta" />
         {messageApi && <p>{messageApi}</p>}
       </div>
-      <Link href={"/dashboard"}>oloa</Link>
     </Container>
   );
 }
