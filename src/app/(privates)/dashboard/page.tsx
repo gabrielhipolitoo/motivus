@@ -5,13 +5,15 @@ import { getServerSession } from "next-auth";
 import { signOut, useSession } from "next-auth/react";
 import React from "react";
 import { User } from "../../../../@types/next-auth";
+import { CheckPermission } from "@/actions/checkPermission";
+import VerifyRole from "@/componentes/VerifyRole/VerifyRole";
 
 export default async function Dashboard() {
-  const session = await getServerSession(authOptions) as User;
-  console.log(session)
   return (
-    <Container>
-      <p>Dashboard</p>
-    </Container>
+    <VerifyRole router="/dashboard">
+      <Container>
+        <p>Dashboard</p>
+      </Container>
+    </VerifyRole>
   );
 }

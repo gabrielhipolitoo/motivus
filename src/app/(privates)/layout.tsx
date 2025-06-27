@@ -1,4 +1,5 @@
 import AuthProvider from "@/componentes/AuthProvider/AuthProvider";
+import VerifyRole from "@/componentes/VerifyRole/VerifyRole";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -14,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <AuthProvider>{children}</AuthProvider>
+        <VerifyRole>{children}</VerifyRole>
       </body>
     </html>
   );

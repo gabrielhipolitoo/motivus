@@ -1,12 +1,11 @@
-import { NextRequestWithAuth } from "next-auth/middleware";
 import { NextMiddleware, NextRequest, NextResponse } from "next/server";
 
 type MiddlewareFactory = (
-  req: any
-) => NextResponse | Promise<NextResponse> | void;
+  req: NextRequest
+) => NextResponse | Promise<NextResponse>;
 
 export function chain(middlwares: MiddlewareFactory[]) {
-  return async function (req: NextRequestWithAuth) {
+  return async function (req: NextRequest) {
     for (const middleware of middlwares) {
       const response = await middleware(req);
       if (response !== NextResponse.next()) {
