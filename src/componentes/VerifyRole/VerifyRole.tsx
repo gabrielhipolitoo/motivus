@@ -12,10 +12,11 @@ export default async function VerifyRole({
   router: Path;
 }) {
   const session = await getServerSession(authOptions);
-  CheckPermission(session?.user?.permission, router);
+  const response = await CheckPermission(session?.user?.permission, router);
 
-  if (session?.user.permission === "manager") {
-    return <p>Funcionou</p>;
+  if (response.success) {
+    return <section className="w-full h-full">{children}</section>;
   }
-  return <section className="">{children}</section>;
+
+  return <p>{"não"}</p>;
 }

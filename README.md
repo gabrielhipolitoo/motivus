@@ -2,7 +2,7 @@
 - Criar middleware pra gerenciar rotas com permissão
   👉 adicionar permissão nas rotas
 - Melhorar tipagem na rota api/auth-mongo
-
+- melhorar o middleware verifyAuth
 # Concluidos ✅
 
 - criar autenticação (enviar as credenciais e validar o token)

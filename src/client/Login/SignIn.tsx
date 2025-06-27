@@ -1,5 +1,4 @@
 "use client";
-
 import { signIn, signOut } from "next-auth/react";
 import { Container } from "@/componentes/Container/Container";
 import { Form } from "@/componentes/Input";
@@ -38,7 +37,7 @@ export default function SignIn() {
       setLoading(false);
     }
   }
-  
+
   function ButtonLoader() {
     if (loading) {
       return (

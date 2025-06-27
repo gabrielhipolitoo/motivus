@@ -1,6 +1,7 @@
 import { Path, privateRoutes, Role } from "@/router/routes";
+import { NextResponse } from "next/server";
+import { success } from "zod/v4";
 
-// const verify = privateRoutes.find(({path}) =>  )
 export const CheckPermission = async (
   permission: string | undefined,
   pathname: Path
@@ -10,6 +11,14 @@ export const CheckPermission = async (
   );
 
   console.log(verify);
+
+  if (verify) {
+    return {
+      success: true,
+    };
+  } else {
+    return { success: true };
+  }
 };
 
 /*

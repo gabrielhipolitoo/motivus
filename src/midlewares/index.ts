@@ -15,9 +15,29 @@ export const verifyAuth = async (request: NextRequest) => {
     return NextResponse.redirect(redirectUrl);
   }
 
-  if (token && publicRoute && publicRoute.whenAuthenticated === "redirect") {
+  if (
+    token &&
+    publicRoute &&
+    publicRoute.whenAuthenticated === "redirect" &&
+    path === "/"
+  ) {
     const redirectUrl = request.nextUrl.clone();
+    console.log(redirectUrl);
     redirectUrl.pathname = "/dashboard";
+    return NextResponse.redirect(redirectUrl);
+  }
+
+  if (path === "/" && token) {
+    const redirectUrl = request.nextUrl.clone();
+    console.log(redirectUrl);
+    redirectUrl.pathname = "/dashboard";
+    return NextResponse.redirect(redirectUrl);
+  }
+
+  if (path === "/" && !token) {
+    const redirectUrl = request.nextUrl.clone();
+    console.log(redirectUrl);
+    redirectUrl.pathname = REDIRECT_WHITOUT_AUTHENTICATED_ROUTE;
     return NextResponse.redirect(redirectUrl);
   }
   return NextResponse.next();
