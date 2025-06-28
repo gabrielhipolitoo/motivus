@@ -1,10 +1,12 @@
 # Proximas tarefas
-- Criar middleware pra gerenciar rotas com permissão
-  👉 adicionar permissão nas rotas
+ 👉 criando sidebar
+- Retorna apenas rotas autorizadas no sidebar
 - Melhorar tipagem na rota api/auth-mongo
-- melhorar o middleware verifyAuth
-# Concluidos ✅
 
+
+# Concluidos ✅
+- Criar middleware pra gerenciar rotas com permissão
+- adicionar permissão nas rotas
 - criar autenticação (enviar as credenciais e validar o token)
 - Criar conexão com banco de dados(mongodb)
 - Solucionar problema com o recebimento das credenciais
