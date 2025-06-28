@@ -1,16 +1,10 @@
-"use client";
-import { useSession } from "next-auth/react";
-import React, { ReactNode } from "react";
-import Spinner from "../Spinner/Spinner";
-
+import React, { ReactNode, Suspense } from "react";
 type ContainerProps = {
   position?: "center";
   children: ReactNode;
 };
 
 export const Container = ({ children, position }: ContainerProps) => {
-  const { data: session, status } = useSession();
-  console.log(session);
   return (
     <section
       className={`flex flex-c w-full h-full bg-[#EDEDED] 
@@ -18,11 +12,7 @@ export const Container = ({ children, position }: ContainerProps) => {
         
         `}
     >
-      {status === "loading" ? (
-        <Spinner styles={{ width: 40, height: 40 }} />
-      ) : (
-        children
-      )}
+      <Suspense fallback="loading">{children}</Suspense>
     </section>
   );
 };

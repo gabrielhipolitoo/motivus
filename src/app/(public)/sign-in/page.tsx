@@ -1,19 +1,17 @@
 "use client";
 
-import { signIn, signOut } from "next-auth/react";
-import { Container } from "@/componentes/Container/Container";
-import { Form } from "@/componentes/Input";
-import LinkRouter from "@/componentes/LinkRouter/LinkRouter";
+import { Container } from "@/components/Container/Container";
+import { Form } from "@/components/Input";
+import LinkRouter from "@/components/LinkRouter/LinkRouter";
 import { loginInputSchema, LoginTypeSchema } from "@/schemas/loginSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { loginAction } from "@/actions/LoginActions";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import Link from "next/link";
-import Spinner from "@/componentes/Spinner/Spinner";
+import Spinner from "@/components/Spinner/Spinner";
+
 export default function SignIn() {
-  const [error, setError] = useState("");
   const [messageApi, setMessageApi] = useState<any>("");
   const [loading, setLoading] = useState(false);
   const {
@@ -38,7 +36,7 @@ export default function SignIn() {
       setLoading(false);
     }
   }
-  
+
   function ButtonLoader() {
     if (loading) {
       return (
@@ -48,7 +46,6 @@ export default function SignIn() {
         />
       );
     }
-
     return <Form.button value="Entrar" />;
   }
 
@@ -75,8 +72,6 @@ export default function SignIn() {
               error={errors.password?.message}
             />
           </Form.label>
-
-          {error && <p className="text-red-500 mt-2">{error}</p>}
 
           {ButtonLoader()}
         </Form.content>

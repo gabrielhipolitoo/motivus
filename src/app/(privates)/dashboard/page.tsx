@@ -1,13 +1,13 @@
-import { Container } from "@/componentes/Container/Container";
-
-import VerifyRole from "@/componentes/VerifyRole/VerifyRole";
+import { Container } from "@/components/Container/Container";
+import PermissionProvider from "@/components/PermissionProvider/PermissionProvider";
+import SideBar from "@/UIComponents/SideBar/SideBar";
 
 export default async function Dashboard() {
   return (
-    <VerifyRole router="/dashboard">
+    <PermissionProvider router="/dashboard">
       <Container>
-        <p>Dashboard</p>
+        <SideBar />
       </Container>
-    </VerifyRole>
+    </PermissionProvider>
   );
 }

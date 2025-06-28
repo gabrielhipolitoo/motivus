@@ -4,7 +4,7 @@ import { Path } from "@/router/routes";
 import { getServerSession } from "next-auth";
 import React, { ReactNode } from "react";
 
-export default async function VerifyRole({
+export default async function PermissionProvider({
   children,
   router,
 }: {

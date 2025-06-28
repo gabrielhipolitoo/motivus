@@ -1,7 +1,7 @@
-import { Container } from "@/componentes/Container/Container";
-import BoxAccount from "@/componentes/ContainerLogin/BoxAccount";
-import { Form } from "@/componentes/Input";
-import Logo from "@/componentes/Logo/Logo";
+import { Container } from "@/components/Container/Container";
+import BoxAccount from "@/components/ContainerLogin/BoxAccount";
+import { Form } from "@/components/Input";
+import Logo from "@/components/Logo/Logo";
 
 export default function recoverpassword() {
   return (

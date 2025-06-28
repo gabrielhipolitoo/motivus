@@ -20,16 +20,3 @@ export const CheckPermission = async (
     return { success: true };
   }
 };
-
-/*
-
-
-Minha regra prática é:
-
-obter dados no componente do servidor (buscar, consultar banco de dados)
-
-enviar dados com ação do servidor (principalmente de formulários)
-
-usar o manipulador de rota apenas se precisar expor uma API ou criar um webhooks
-
-*/

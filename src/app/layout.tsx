@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import AuthProvider from "@/componentes/AuthProvider/AuthProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -10,13 +9,11 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode; 
 }>) {
   return (
-    <html lang="en">
-      <body>
-        <AuthProvider>{children}</AuthProvider>
-      </body>
+    <html lang="pt-br">
+      <body>{children}</body>
     </html>
   );
 }
