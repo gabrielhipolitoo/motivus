@@ -10,7 +10,8 @@ export type Path =
   | "/non-compliance"
   | "/users"
   | "/stock"
-  | "/machines";
+  | "/machines"
+  | "/companies";
 
 export type Role = "manager" | "employeeMaster" | "consultant" | "employee";
 
@@ -44,7 +45,7 @@ export const privateRoutes: PrivateRoutes[] = [
   },
   {
     role: "consultant",
-    path: ["/non-compliance", "/rastreability"],
+    path: ["/non-compliance", "/rastreability", "/machines"],
   },
   {
     role: "employee",

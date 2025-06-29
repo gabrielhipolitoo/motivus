@@ -8,7 +8,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   id?: string;
   icon?: IconDefinition;
   value: string;
-  active?: string;
+  active?: boolean;
 };
 
 export default function Button({
@@ -21,11 +21,15 @@ export default function Button({
   return (
     <button
       {...rest}
-      className="flex justify-between items-center w-[90%] after:[teste] h-[70px] bg-amber-100"
+      className="flex items-center rounded-xl  w-full h-[70px] p-1 cursor-pointer hover:bg-amber-300"
     >
-      {icon && <FontAwesomeIcon icon={icon} color="#000" />}
+      {icon && <FontAwesomeIcon icon={icon} size={"xl"} color="#fff" />}
 
-      {active && <p className="">{value}</p>}
+      {active && (
+        <div className="ml-auto w-[120px]">
+          <p className=" text-justify text-white ">{value}</p>
+        </div>
+      )}
     </button>
   );
 }

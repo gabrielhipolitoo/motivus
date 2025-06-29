@@ -12,7 +12,7 @@ export default function SideBarWrapper({
   return (
     <section
       className={` ${
-        active ? "w-[100px]" : "w-[300px]"
+        active ? "w-[220px]" : "w-[100px]"
       }  flex flex-col justify-between p-2  h-full bg-[#181918] overflow-hidden`}
     >
       {children}
