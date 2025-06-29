@@ -1,19 +1,31 @@
-import AuthProvider from "@/components/AuthProvider/AuthProvider";
-import VerifyRole from "@/components/PermissionProvider/PermissionProvider";
+import { Container } from "@/components/Container/Container";
+import SideBar from "@/UIComponents/SideBar/SideBar";
 import type { Metadata } from "next";
+import { ReactElement, useCallback, useMemo } from "react";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]/route";
+import { privateRoutes } from "@/router/routes";
 
 export const metadata: Metadata = {
   title: "Motivus",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await getServerSession(authOptions);
+  console.log(session?.user);
+
   return (
     <html lang="pt-br">
-      <body>{children}</body>
+      <body>
+        <Container>
+          {session && <SideBar session={session.user} />}
+          {children}
+        </Container>
+      </body>
     </html>
   );
 }

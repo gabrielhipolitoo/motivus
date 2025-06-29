@@ -6,7 +6,7 @@ export default async function Dashboard() {
   return (
     <PermissionProvider router="/dashboard">
       <Container>
-        <SideBar />
+        <p>teste</p>
       </Container>
     </PermissionProvider>
   );

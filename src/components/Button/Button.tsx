@@ -8,26 +8,26 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   id?: string;
   icon?: IconDefinition;
   value: string;
-  active?: boolean;
+  collapsed?: boolean;
 };
 
 export default function Button({
   id,
   icon,
-  active,
+  collapsed,
   value,
   ...rest
 }: ButtonProps) {
   return (
     <button
       {...rest}
-      className="flex items-center rounded-xl  w-full h-[70px] p-1 cursor-pointer hover:bg-amber-300"
+      className="flex items-center rounded-xl justify-center  w-full h-[50px] p-2 cursor-pointer hover:bg-[#3C3C3C]"
     >
-      {icon && <FontAwesomeIcon icon={icon} size={"xl"} color="#fff" />}
+      {icon && <FontAwesomeIcon icon={icon} size={"lg"} color="#fff" />}
 
-      {active && (
-        <div className="ml-auto w-[120px]">
-          <p className=" text-justify text-white ">{value}</p>
+      {collapsed && (
+        <div className="ml-auto w-[170px]">
+          <p className=" text-justify text-[13px] text-white ">{value}</p>
         </div>
       )}
     </button>

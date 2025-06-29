@@ -11,13 +11,24 @@ export type Path =
   | "/users"
   | "/stock"
   | "/machines"
-  | "/companies";
+  | "/companies"
+  | "all";
 
 export type Role = "manager" | "employeeMaster" | "consultant" | "employee";
+export type PathNames =
+  | "Dashboard"
+  | "Produção"
+  | "Conformidades"
+  | "Rastreabilidade"
+  | "Usuários"
+  | "Estoque"
+  | "Maquinas"
+  | "Companhias";
 
 export type PrivateRoutes = {
   role: Role;
   path: Path[];
+  pathname: PathNames[];
 };
 
 export const privateRoutes: PrivateRoutes[] = [
@@ -32,6 +43,16 @@ export const privateRoutes: PrivateRoutes[] = [
       "/users",
       "/machines",
     ],
+    pathname: [
+      "Dashboard",
+      "Produção",
+      "Estoque",
+      "Maquinas",
+      "Companhias",
+      "Rastreabilidade",
+      "Conformidades",
+      "Usuários",
+    ],
   },
   {
     role: "employeeMaster",
@@ -42,14 +63,24 @@ export const privateRoutes: PrivateRoutes[] = [
       "/stock",
       "/machines",
     ],
+    pathname: [
+      "Dashboard",
+      "Conformidades",
+      "Rastreabilidade",
+      "Estoque",
+      "Maquinas",
+    ],
   },
   {
     role: "consultant",
-    path: ["/non-compliance", "/rastreability", "/machines"],
+    path: ["/non-compliance", "/rastreability", "/companies"],
+    pathname: ["Conformidades", "Rastreabilidade", "Companhias"],
   },
+
   {
     role: "employee",
     path: ["/dashboard", "/production"],
+    pathname: ["Dashboard", "Produção"],
   },
 ];
 

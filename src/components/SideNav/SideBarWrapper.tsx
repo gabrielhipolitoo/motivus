@@ -1,3 +1,4 @@
+import { workSans } from "@/utils/fonts";
 import React, { HtmlHTMLAttributes, ReactNode } from "react";
 
 type SideBarWrapperProps = {
@@ -11,9 +12,16 @@ export default function SideBarWrapper({
 }: SideBarWrapperProps) {
   return (
     <section
-      className={` ${
-        active ? "w-[220px]" : "w-[100px]"
-      }  flex flex-col justify-between p-2  h-full bg-[#181918] overflow-hidden`}
+      className={
+        workSans.className +
+        ` ${active ? "w-[250px]" : "w-[100px]"} 
+        gap-[30px]
+        flex flex-col
+        p-2 items-center
+        h-full bg-[#181918]
+        transition-all
+      overflow-hidden`
+      }
     >
       {children}
     </section>
