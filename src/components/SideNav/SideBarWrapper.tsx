@@ -1,26 +1,29 @@
+import {
+  SideBarContext,
+  SideBarProvider,
+} from "@/context/SideBarContext/context";
 import { workSans } from "@/utils/fonts";
-import React, { HtmlHTMLAttributes, ReactNode } from "react";
+import React, { HtmlHTMLAttributes, ReactNode, useContext } from "react";
 
 type SideBarWrapperProps = {
   children: ReactNode;
-  active: boolean;
 };
 
-export default function SideBarWrapper({
-  active,
-  children,
-}: SideBarWrapperProps) {
+export default function SideBarWrapper({ children }: SideBarWrapperProps) {
+  const { collapsed } = useContext(SideBarContext);
+
   return (
     <section
       className={
         workSans.className +
-        ` ${active ? "w-[250px]" : "w-[100px]"} 
-        gap-[30px]
+        ` ${collapsed ? "w-[270px]" : "w-[100px]"} 
+        gap-[50px]
+        relative
         flex flex-col
         p-2 items-center
         h-full bg-[#181918]
         transition-all
-      overflow-hidden`
+      `
       }
     >
       {children}

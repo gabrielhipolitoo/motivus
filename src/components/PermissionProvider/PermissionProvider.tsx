@@ -1,6 +1,6 @@
 import { CheckPermission } from "@/actions/checkPermission";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { Path } from "@/router/routes";
+import { Path, Role } from "@/router/routes";
 import { getServerSession } from "next-auth";
 import React, { ReactNode } from "react";
 
@@ -12,7 +12,8 @@ export default async function PermissionProvider({
   router: Path;
 }) {
   const session = await getServerSession(authOptions);
-  const response = await CheckPermission(session?.user?.permission, router);
+  const permission = session?.user.permission as Role;
+  const response = await CheckPermission(permission, router);
 
   if (response.success) {
     return <section className="w-full h-full">{children}</section>;

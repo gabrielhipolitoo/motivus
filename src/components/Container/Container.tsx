@@ -1,3 +1,4 @@
+import { SideBarProvider } from "@/context/SideBarContext/context";
 import React, { ReactNode, Suspense } from "react";
 type ContainerProps = {
   position?: "center";
@@ -6,13 +7,15 @@ type ContainerProps = {
 
 export const Container = ({ children, position }: ContainerProps) => {
   return (
-    <section
-      className={`flex flex-c w-full h-full bg-[#EDEDED] 
+    <SideBarProvider>
+      <section
+        className={`flex flex-c w-full h-full bg-[#EDEDED] 
         ${position === "center" ? "justify-center items-center" : ""}
         
         `}
-    >
-      <Suspense fallback="loading">{children}</Suspense>
-    </section>
+      >
+        <Suspense fallback="loading">{children}</Suspense>
+      </section>
+    </SideBarProvider>
   );
 };

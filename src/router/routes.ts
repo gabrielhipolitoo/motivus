@@ -1,3 +1,15 @@
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import {
+  faBezierCurve,
+  faBoxOpen,
+  faBuilding,
+  faClipboard,
+  faHome,
+  faLayerGroup,
+  faMicrochip,
+  faUserPlus,
+} from "@fortawesome/free-solid-svg-icons";
+
 export const publicRoutes = [
   { path: "/sign-in", whenAuthenticated: "redirect" },
   { path: "/recovery-password", whenAuthenticated: "redirect" },
@@ -26,61 +38,60 @@ export type PathNames =
   | "Companhias";
 
 export type PrivateRoutes = {
-  role: Role;
-  path: Path[];
-  pathname: PathNames[];
+  key: PathNames;
+  path: Path;
+  authorized: Role[];
+  icon?: IconDefinition;
 };
 
 export const privateRoutes: PrivateRoutes[] = [
   {
-    role: "manager",
-    path: [
-      "/dashboard",
-      "/production",
-      "/rastreability",
-      "/non-compliance",
-      "/stock",
-      "/users",
-      "/machines",
-    ],
-    pathname: [
-      "Dashboard",
-      "Produção",
-      "Estoque",
-      "Maquinas",
-      "Companhias",
-      "Rastreabilidade",
-      "Conformidades",
-      "Usuários",
-    ],
+    key: "Dashboard",
+    path: "/dashboard",
+    authorized: ["manager", "employee", "employeeMaster", "manager"],
+    icon: faHome,
   },
   {
-    role: "employeeMaster",
-    path: [
-      "/dashboard",
-      "/non-compliance",
-      "/rastreability",
-      "/stock",
-      "/machines",
-    ],
-    pathname: [
-      "Dashboard",
-      "Conformidades",
-      "Rastreabilidade",
-      "Estoque",
-      "Maquinas",
-    ],
+    key: "Produção",
+    path: "/production",
+    authorized: ["manager", "employee", "employeeMaster", "manager"],
+    icon: faLayerGroup,
   },
   {
-    role: "consultant",
-    path: ["/non-compliance", "/rastreability", "/companies"],
-    pathname: ["Conformidades", "Rastreabilidade", "Companhias"],
+    key: "Estoque",
+    path: "/stock",
+    authorized: ["employee", "employeeMaster", "manager"],
+    icon:faBoxOpen
   },
-
   {
-    role: "employee",
-    path: ["/dashboard", "/production"],
-    pathname: ["Dashboard", "Produção"],
+    key: "Rastreabilidade",
+    path: "/rastreability",
+    authorized: ["consultant", "manager"],
+    icon: faBezierCurve,
+  },
+  {
+    key: "Conformidades",
+    path: "/non-compliance",
+    authorized: ["consultant", "manager"],
+    icon: faClipboard,
+  },
+  {
+    key: "Maquinas",
+    path: "/machines",
+    authorized: ["employeeMaster", "manager"],
+    icon: faMicrochip,
+  },
+  {
+    key: "Companhias",
+    path: "/companies",
+    authorized: ["consultant", "manager"],
+    icon: faBuilding,
+  },
+  {
+    key: "Usuários",
+    path: "/users",
+    authorized: ["employeeMaster", "manager"],
+    icon: faUserPlus,
   },
 ];
 

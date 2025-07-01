@@ -5,6 +5,10 @@ import { ReactElement, useCallback, useMemo } from "react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import { privateRoutes } from "@/router/routes";
+import {
+  SideBarContext,
+  SideBarProvider,
+} from "@/context/SideBarContext/context";
 
 export const metadata: Metadata = {
   title: "Motivus",

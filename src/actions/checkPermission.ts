@@ -1,16 +1,10 @@
 import { Path, privateRoutes, Role } from "@/router/routes";
-import { NextResponse } from "next/server";
-import { success } from "zod/v4";
 
-export const CheckPermission = async (
-  permission: string | undefined,
-  pathname: Path
-) => {
+export const CheckPermission = async (permission: Role, pathname: Path) => {
   const verify = privateRoutes.filter(
-    ({ role, path }) => role === permission && path.includes(pathname)
+    ({ authorized, path }) =>
+      path === pathname && authorized.includes(permission)
   );
-
-  console.log(verify);
 
   if (verify) {
     return {
