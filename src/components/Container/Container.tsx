@@ -9,7 +9,7 @@ export const Container = ({ children, position }: ContainerProps) => {
   return (
     <SideBarProvider>
       <section
-        className={`flex flex-c w-full h-full bg-[#EDEDED] 
+        className={`flex flex-wrap p-2 w-full h-full bg-[#EDEDED] 
         ${position === "center" ? "justify-center items-center" : ""}
         
         `}

@@ -7,8 +7,9 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   await connectMongo();
-  const { email, password } = (await request.json()) as LoginTypeSchema;
 
+  const { email, password } = (await request.json()) as LoginTypeSchema;
+  
   if (!email || !password) {
     return Response.json(message.PARAMS_INVALID);
   }

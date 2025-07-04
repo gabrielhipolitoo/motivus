@@ -5,5 +5,5 @@ type SideBarGroup = {
 };
 
 export default function SideBarGroup({ children }: SideBarGroup) {
-  return <section className="w-full h-[500px] flex flex-col justify-around">{children}</section>;
+  return <section className="w-full h-[550px] flex flex-col justify-around">{children}</section>;
 }

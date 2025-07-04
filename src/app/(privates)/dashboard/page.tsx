@@ -1,12 +1,14 @@
 import { Container } from "@/components/Container/Container";
+import MainTitle from "@/components/MainTitle/MainTitle";
 import PermissionProvider from "@/components/PermissionProvider/PermissionProvider";
-import SideBar from "@/UIComponents/SideBar/SideBar";
+import ViewGrafic from "@/UIComponents/dashboard/Grafic/ViewGrafic";
 
 export default async function Dashboard() {
   return (
     <PermissionProvider router="/dashboard">
       <Container>
-        <p>Dashboard</p>
+        <MainTitle title="Dashboard" />
+        <ViewGrafic />
       </Container>
     </PermissionProvider>
   );

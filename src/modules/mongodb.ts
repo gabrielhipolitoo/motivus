@@ -1,6 +1,7 @@
 import { message } from "@/utils/messages";
 import mongoose from "mongoose";
-import { UserModel } from "./models/userModels";
+
+
 const uri = process.env.MONGODB_URI;
 if (!uri) {
   throw new Error(message.ERROR_MONGODB_EMPTY_ENV);

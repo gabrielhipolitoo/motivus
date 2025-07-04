@@ -20,15 +20,12 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const session = await getServerSession(authOptions);
-  console.log(session?.user);
 
   return (
     <html lang="pt-br">
-      <body>
-        <Container>
-          {session && <SideBar session={session.user} />}
-          {children}
-        </Container>
+      <body className="flex">
+        {session && <SideBar session={session.user} />}
+        {children}
       </body>
     </html>
   );
