@@ -9,9 +9,8 @@ export const Container = ({ children, position }: ContainerProps) => {
   return (
     <SideBarProvider>
       <section
-        className={`flex flex-wrap p-2 w-full h-full bg-[#EDEDED] 
+        className={`grid grid-cols-2 grid-rows-4 w-full h-full bg-[#EDEDED] 
         ${position === "center" ? "justify-center items-center" : ""}
-        
         `}
       >
         <Suspense fallback="loading">{children}</Suspense>

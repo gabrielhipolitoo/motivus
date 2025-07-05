@@ -23,9 +23,11 @@ export default async function RootLayout({
 
   return (
     <html lang="pt-br">
-      <body className="flex">
-        {session && <SideBar session={session.user} />}
-        {children}
+      <body>
+        <section className="flex w-full h-full">
+          {session && <SideBar session={session.user} />}
+          {children}
+        </section>
       </body>
     </html>
   );

@@ -1,9 +1,6 @@
-import {
-  SideBarContext,
-  SideBarProvider,
-} from "@/context/SideBarContext/context";
+import { SideBarContext } from "@/context/SideBarContext/context";
 import { workSans } from "@/utils/fonts";
-import React, { HtmlHTMLAttributes, ReactNode, useContext } from "react";
+import React, { ReactNode, useContext } from "react";
 
 type SideBarWrapperProps = {
   children: ReactNode;
@@ -23,7 +20,7 @@ export default function SideBarWrapper({ children }: SideBarWrapperProps) {
         p-2 items-center
         h-full bg-[#181918]
         transition-all
-      `
+        `
       }
     >
       {children}

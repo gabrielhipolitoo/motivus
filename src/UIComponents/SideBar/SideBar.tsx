@@ -3,23 +3,14 @@ import Button from "@/components/Link/Button";
 import { SideNav } from "@/components/SideNav";
 import { privateRoutes, Role } from "@/router/routes";
 
-import { ReactElement, useContext, useState } from "react";
+import { ReactElement } from "react";
 
-export default function SideBar({
-  session,
-}: {
-  session: {
-    email: string;
-    name: string;
-    permission: string;
-  } | null;
-}) {
-  const [collapsed, setCollapsed] = useState(false);
+export default function SideBar({ session }: { session: any }) {
   const permission = session?.permission as Role;
 
   const mappedRoutes = () => {
     const routes: ReactElement[] = [];
-    const verify = privateRoutes.map(({ authorized, key, path, icon }) => {
+    privateRoutes.map(({ authorized, key, path, icon }) => {
       if (authorized.includes(permission)) {
         routes.push(<Button key={key} value={key} icon={icon} path={path} />);
       }
@@ -28,12 +19,14 @@ export default function SideBar({
   };
 
   return (
-    <SideNav.wrapper>
-      <SideNav.profiler />
-      <SideNav.links>
-        <SideNav.toggle />
-        {mappedRoutes()}
-      </SideNav.links>
-    </SideNav.wrapper>
+    <SideNav.root>
+      <SideNav.wrapper>
+        <SideNav.profiler />
+        <SideNav.links>
+          <SideNav.toggle />
+          {mappedRoutes()}
+        </SideNav.links>
+      </SideNav.wrapper>
+    </SideNav.root>
   );
 }
