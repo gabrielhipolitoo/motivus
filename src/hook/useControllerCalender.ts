@@ -3,13 +3,13 @@ import {
   getDaysCurrentMonth,
   getFirstDayWeek,
   getPreviousMonth,
+  today,
 } from "@/utils/date/dateHelper";
 import { useState } from "react";
 
 export default function useControllerCalender() {
   const [currentDate, setCurrentDate] = useState(date.add(0, "month"));
-  const dates = [];
-
+  console.log(date.format("DD/MM/YYYY"));
   const renderCalender = () => {
     const firstDayWeek = getFirstDayWeek(currentDate);
     const dayCurrentMonth = getDaysCurrentMonth(currentDate);
@@ -17,18 +17,27 @@ export default function useControllerCalender() {
 
     const prevLastMonth = Array.from({ length: firstDayWeek }, (_, i) => ({
       day: previousMonth - firstDayWeek + i + 1,
-      type: "prev",
     }));
 
     const currentMonthDays = Array.from(
       { length: dayCurrentMonth },
       (_, i) => ({
         day: i + 1,
-        type: "current",
       })
     );
 
-    return [...prevLastMonth, ...currentMonthDays];
+    return [
+      ...prevLastMonth.map(({ day }) => ({
+        day,
+        type: "day-previous-month",
+        datafull: null,
+      })),
+      ...currentMonthDays.map(({ day }) => ({
+        day,
+        type: day === today ? "current-date" : "days-month",
+        datafull: null,
+      })),
+    ];
   };
   return {
     renderCalender,

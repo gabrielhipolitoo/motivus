@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 
 export const date = dayjs();
 
-const today = date.date();
+export const today = date.date();
 const currentlyMonth = date.month();
 
 export const getPreviousMonth = (date: dayjs.Dayjs) => {
