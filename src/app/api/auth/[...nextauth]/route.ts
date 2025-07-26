@@ -3,8 +3,6 @@ import Credentials from "next-auth/providers/credentials";
 import { email } from "zod/v4";
 export const BASE_PATH = "/api/auth";
 
-
-
 export const authOptions: NextAuthOptions = {
   providers: [
     Credentials({
@@ -15,16 +13,19 @@ export const authOptions: NextAuthOptions = {
         password: {},
       },
       async authorize(credentials, req) {
-        const response = await fetch(`${process.env.NEXTAUTH_URL}/api/login`, {
-          method: "POST",
-          body: JSON.stringify(credentials),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(
+          `${process.env.NEXTAUTH_URL}/auth/signin`,
+          {
+            method: "POST",
+            body: JSON.stringify(credentials),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
         const { user, error } = await response.json();
-        console.log(user, error);
+        console.log(error);
         if (!user || error) {
           return null;
         }
@@ -40,7 +41,7 @@ export const authOptions: NextAuthOptions = {
       if (user) {
         return {
           ...token,
-          permission: user.permission,
+          role: user.role,
         };
       }
       return token;
@@ -51,7 +52,7 @@ export const authOptions: NextAuthOptions = {
         ...session,
         user: {
           ...session.user,
-          permission: token.permission,
+          role: token.role,
         },
       };
     },

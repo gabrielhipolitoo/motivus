@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 export const date = dayjs();
 
 export const today = date.date();
-const currentlyMonth = date.month();
+export const currentlyMonth = date.month();
 
 export const getPreviousMonth = (date: dayjs.Dayjs) => {
   const previousMonth = date.subtract(1, "month");

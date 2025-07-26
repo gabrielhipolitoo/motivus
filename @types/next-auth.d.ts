@@ -8,7 +8,7 @@ declare module "next-auth" {
   }
 
   interface User {
-    permission: string;
+    role: string;
   }
 
   interface AdapterUser extends User {}
@@ -16,6 +16,6 @@ declare module "next-auth" {
 
 declare module "next-auth/jwt" {
   interface JWT {
-    permission: string;
+    role: string;
   }
 }

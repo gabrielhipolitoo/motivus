@@ -5,6 +5,7 @@ export default function UiCalender() {
   return (
     <Calender.content>
       <Calender.header />
+      <Calender.days />
     </Calender.content>
   );
 }

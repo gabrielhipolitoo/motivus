@@ -2,16 +2,19 @@
 import Button from "@/components/Link/Button";
 import { SideNav } from "@/components/SideNav";
 import { privateRoutes, Role } from "@/router/routes";
+import { Session } from "next-auth";
 
 import { ReactElement } from "react";
+import { User } from "../../../../@types/next-auth";
 
-export default function SideBar({ session }: { session: any }) {
-  const permission = session?.permission as Role;
+export default function SideBar({ session }: User) {
+  const { user } = session;
+  const { role, name } = user;
 
   const mappedRoutes = () => {
     const routes: ReactElement[] = [];
     privateRoutes.map(({ authorized, key, path, icon }) => {
-      if (authorized.includes(permission)) {
+      if (authorized.includes(role)) {
         routes.push(<Button key={key} value={key} icon={icon} path={path} />);
       }
     });
@@ -21,7 +24,7 @@ export default function SideBar({ session }: { session: any }) {
   return (
     <SideNav.root>
       <SideNav.wrapper>
-        <SideNav.profiler />
+        <SideNav.profiler name={name} />
         <SideNav.links>
           <SideNav.toggle />
           {mappedRoutes()}

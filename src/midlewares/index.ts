@@ -1,6 +1,6 @@
 import { publicRoutes } from "@/router/routes";
 import { NextRequest, NextResponse } from "next/server";
-
+// request.cookies.get("next-auth.session-token");
 export const verifyAuth = async (request: NextRequest) => {
   const REDIRECT_WHITOUT_AUTHENTICATED_ROUTE = "/sign-in";
   const path = request.nextUrl.pathname;
@@ -8,8 +8,8 @@ export const verifyAuth = async (request: NextRequest) => {
 
   const publicRoute = publicRoutes.find((route) => route.path === path);
   const token = true;
-
   if (!token && !publicRoute) {
+    console.log("passou aqui");
     const redirectUrl = request.nextUrl.clone();
     redirectUrl.pathname = REDIRECT_WHITOUT_AUTHENTICATED_ROUTE;
     return NextResponse.redirect(redirectUrl);

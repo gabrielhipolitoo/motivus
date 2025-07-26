@@ -8,15 +8,14 @@ export const loginAction = async (data: LoginTypeSchema) => {
     password: data.password,
     redirect: false,
   });
-
+  console.log(response);
   const res = await response;
   if (res?.error === "CredentialsSignin") {
     return { success: false, message: message.CREDENTIALS_INVALID };
   }
 
   if (res?.error) {
-    console.log(res);
-    return { success: false, message: "houve algum erro" };
+    return { success: false, message: "" };
   }
   return {
     success: true,

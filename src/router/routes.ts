@@ -37,6 +37,7 @@ export type PathNames =
   | "Maquinas"
   | "Companhias";
 
+  
 export type PrivateRoutes = {
   key: PathNames;
   path: Path;

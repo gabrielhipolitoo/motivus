@@ -10,8 +10,7 @@ import { faAngleRight } from "@fortawesome/free-solid-svg-icons/faAngleRight";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function CalanderHeader() {
-  const { renderCalender } = useControllerCalender();
-  console.log(renderCalender().map((i) => {console.log(i)}));
+  
   return (
     <header className="flex justify-between p-2">
       <div>{currentlyMonth + " " + yearCurrently}</div>

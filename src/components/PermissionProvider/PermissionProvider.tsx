@@ -12,12 +12,12 @@ export default async function PermissionProvider({
   router: Path;
 }) {
   const session = await getServerSession(authOptions);
-  const permission = session?.user.permission as Role;
+  const permission = session?.user.role as Role;
   const response = await CheckPermission(permission, router);
-
+  
   if (response.success) {
+    console.log(response);
     return <section className="w-full h-full">{children}</section>;
   }
-
   return <p>{"não"}</p>;
 }

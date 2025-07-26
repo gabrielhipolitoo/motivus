@@ -5,7 +5,7 @@ export default function Candles() {
   const currentlyMonth = date.getMonth();
 
   return (
-    <div className="flex justify-between  ">
+    <div className="flex justify-between w-full bg-amber-100 ">
       {months.map((month, index) => (
         <div
           key={month}
