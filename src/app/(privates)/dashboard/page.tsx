@@ -4,6 +4,7 @@ import MainTitle from "@/components/MainTitle/MainTitle";
 import PermissionProvider from "@/components/PermissionProvider/PermissionProvider";
 import UiCalender from "@/components/UIComponents/dashboard/Calender/Calender";
 import ViewGrafic from "@/components/UIComponents/dashboard/Grafic/ViewGrafic";
+import Table from "@/components/UIComponents/dashboard/Table/Table";
 
 export default async function Dashboard() {
   return (
@@ -14,6 +15,7 @@ export default async function Dashboard() {
           <ViewGrafic />
           <UiCalender />
         </Box>
+        <Table />
       </Container>
     </PermissionProvider>
   );

@@ -7,7 +7,7 @@ export const verifyAuth = async (request: NextRequest) => {
   console.log("Middleware => VERIFYAUTH", path);
 
   const publicRoute = publicRoutes.find((route) => route.path === path);
-  const token = true;
+  const token = request.cookies.get("next-auth.session-token");
   if (!token && !publicRoute) {
     console.log("passou aqui");
     const redirectUrl = request.nextUrl.clone();
