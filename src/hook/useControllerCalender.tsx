@@ -77,13 +77,7 @@ export default function useControllerCalender() {
         );
       }
 
-      if (day < today && type == "days-month") {
-        mappedDates.push(
-          <button className="w-9  font-medium text-[#898989]  text-gray text-center hover:bg-black rounded-md">
-            {day}
-          </button>
-        );
-      }
+      
     });
 
     return mappedDates.flat();
