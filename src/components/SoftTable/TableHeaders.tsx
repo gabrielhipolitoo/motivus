@@ -8,10 +8,12 @@ export type HeadersTableProps = {
 
 export const HeadersTable = ({ headers }: HeadersTableProps) => {
   return (
-    <Box bgColor="#000">
-      {headers.map((header) => (
-        <p className="text-sm">{header}</p>
-      ))}
-    </Box>
+    <thead className="h-15">
+      <tr className="  text-gray font-light m-2 text-s">
+        {headers.map((header) => (
+          <th className="w-[10%] text-white text-sm font-normal text-center ">{header}</th>
+        ))}
+      </tr>
+    </thead>
   );
 };

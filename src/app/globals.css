@@ -15,3 +15,7 @@ body {
     transform: rotate(360deg);
   }
 }
+
+tbody tr:nth-child(2n) {
+  background-color: "#f4f4f4";
+}
