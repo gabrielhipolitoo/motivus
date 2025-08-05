@@ -9,7 +9,7 @@ import {
 import { ReactElement, useState } from "react";
 
 export default function useControllerCalender() {
-  const [currentDate, setCurrentDate] = useState(date.add(0, "month"));
+  const [currentDate, setCurrentDate] = useState(date.add(1, "month"));
 
   const createCalender = () => {
     const firstDayWeek = getFirstDayWeek(currentDate);
@@ -51,9 +51,11 @@ export default function useControllerCalender() {
     const mappedDates = [] as ReactElement[];
     const isCurrentlyMonth = currentDate.month() === currentlyMonth;
 
-    createCalender().forEach(({ datafull, day, type }) => {
-      const prevDays = today > day;
-      if (type === "day-previous-month") {
+    createCalender().forEach(({ day, type }) => {
+      if (
+        type === "day-previous-month" ||
+        (type === "days-month" && today > day)
+      ) {
         mappedDates.push(
           <button className="w-9  font-medium text-[#898989]  text-gray text-center hover:bg-black rounded-md">
             {day}
@@ -61,9 +63,9 @@ export default function useControllerCalender() {
         );
       }
 
-      if (type === "days-month") {
+      if (type === "days-month" && today < day) {
         mappedDates.push(
-          <button className="w-9 font-medium text-sm text-black  text-gray text-center hover:bg-black rounded-md">
+          <button className="w-9 font-medium text-sm text-black  text-gray text-center hover:bg-[#262628] hover:text-white rounded-md">
             {day}
           </button>
         );
@@ -76,8 +78,6 @@ export default function useControllerCalender() {
           </button>
         );
       }
-
-      
     });
 
     return mappedDates.flat();

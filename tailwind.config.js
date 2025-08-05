@@ -10,8 +10,7 @@ module.exports = {
       teste: colors.fuchsia,
     },
     fontFamily: {
-      sans: ["Graphik", "sans-serif"],
-      serif: ["Merriweather", "serif"],
+      sans: ["var(--font-work-sans)", "sans-serif"],
     },
     extend: {
       spacing: {

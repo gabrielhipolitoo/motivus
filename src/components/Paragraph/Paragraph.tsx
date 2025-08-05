@@ -17,19 +17,16 @@ type ParagraphProps = HTMLAttributes<HTMLParagraphElement> & {
 
 export const Paragraph = ({
   color = "#fff",
-  size = 10,
+  size = 16,
   text,
-  weight = "normal",
+  weight = "bold",
   ...rest
 }: ParagraphProps) => {
-  const sizeString = String(size);
   return (
     <p
+      className={`font-${weight}`}
+      style={{ color, fontSize: `${size}px` }}
       {...rest}
-      className={`
-    text-[${color}] 
-    font-${weight}
-    text-[${size}px] `}
     >
       {text}
     </p>
